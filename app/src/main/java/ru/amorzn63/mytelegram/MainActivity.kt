@@ -15,6 +15,8 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
+import ru.amorzn63.mytelegram.ui.ChatsFragment
+import ru.amorzn63.mytelegram.ui.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
         setSupportActionBar(mToolbar)  //прорисовка
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.dataContainer, ChatsFragment())
+            .commit()  // устанавливаем фрагмент в контейнер default
         createHeadbar()   // создание верха выдвижки
         createDrawer()   //создание выдвижного меню
     }
@@ -101,8 +106,12 @@ class MainActivity : AppCompatActivity() {
                     position: Int,
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
-                    Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_SHORT)
-                        .show()
+                    when (position) {
+                        7 -> supportFragmentManager.beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.dataContainer, SettingsFragment())
+                            .commit()  // устанавливаем фрагмент настройки в контейнер
+                    }
                     return false
                 }
 
