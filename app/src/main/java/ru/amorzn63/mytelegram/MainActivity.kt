@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
     private fun initFileds() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar) // init Drawer

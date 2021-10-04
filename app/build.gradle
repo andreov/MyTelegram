@@ -51,7 +51,10 @@ dependencies {
     implementation "androidx.annotation:annotation:1.2.0"
 
 
-// Add for NavController support
+// Add for Drawer
     implementation "com.mikepenz:materialdrawer-nav:7.0.0"
+
+// add CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

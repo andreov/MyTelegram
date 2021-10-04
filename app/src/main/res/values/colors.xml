@@ -13,6 +13,7 @@
     <color name="telegram">#0088CC</color>
     <color name="telegram_dark">#007ACC</color>
     <color name="telegram_accend">#FFFFFF</color>
+    <color name="telegram_accend_dark">#D3CCCC</color>
 
     <!-- Material DEFAULT colors -->
     <color name="material_drawer_primary">#2196F3</color>

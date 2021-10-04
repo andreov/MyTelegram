@@ -1,15 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.SettingsFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Настройки" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setting_header_block"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/setting_user_foto"
+            android:layout_width="@dimen/setting_avatar_width"
+            android:layout_height="@dimen/setting_avatar_height"
+            android:src="@drawable/default_photo"
+            app:civ_border_color="@color/telegram_accend"
+            app:civ_border_width="@dimen/setting_avatar_border"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/setting_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_user_name"
+            android:textColor="@color/telegram_accend"
+            android:textSize="@dimen/text_normal"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/setting_user_foto"
+            app:layout_constraintTop_toTopOf="@+id/setting_user_foto" />
+
+        <TextView
+            android:id="@+id/setting_user_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_status"
+            android:textColor="@color/telegram_accend_dark"
+            android:textSize="@dimen/text_small"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/setting_user_foto"
+            app:layout_constraintTop_toBottomOf="@id/setting_user_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
