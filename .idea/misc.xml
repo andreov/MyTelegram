@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/header.xml" value="0.1140625" />
+        <entry key="app/src/main/res/drawable/ripple_effect.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2289156626506024" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.33" />

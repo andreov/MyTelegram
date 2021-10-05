@@ -20,6 +20,7 @@
             android:layout_width="@dimen/setting_avatar_width"
             android:layout_height="@dimen/setting_avatar_height"
             android:src="@drawable/default_photo"
+            app:civ_circle_background_color="@color/telegram_accend"
             app:civ_border_color="@color/telegram_accend"
             app:civ_border_width="@dimen/setting_avatar_border"
             android:layout_marginStart="@dimen/margin_horizontal"
@@ -53,6 +54,122 @@
             app:layout_constraintTop_toBottomOf="@id/setting_user_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/setting_text_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setting_text_account"
+        android:textSize="@dimen/text_small"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_vertical_large"
+        app:layout_constraintTop_toBottomOf="@id/setting_header_block" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setting_btn_phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_text_account"
+        style="@style/settingButton">
+
+        <TextView
+            android:id="@+id/setting_text_phone"
+            android:text="@string/setting_default_number"
+            app:layout_constraintTop_toTopOf="@id/setting_btn_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/normalText" />
+
+        <TextView
+            android:id="@+id/setting_label_phone"
+            android:text="@string/setting_label_phone"
+            app:layout_constraintTop_toBottomOf="@id/setting_text_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/smallText" />
+
+        <View
+            android:id="@+id/setting_seporate"
+            app:layout_constraintTop_toBottomOf="@id/setting_label_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/separate" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setting_btn_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_btn_phone"
+        style="@style/settingButton">
+
+        <TextView
+            android:id="@+id/setting_text_login"
+            android:text="@string/setting_login_default"
+            app:layout_constraintTop_toTopOf="@id/setting_btn_login"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/normalText" />
+
+        <TextView
+            android:id="@+id/setting_label_login"
+            android:text="@string/setting_label_login"
+            app:layout_constraintTop_toBottomOf="@id/setting_text_login"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/smallText" />
+
+        <View
+            android:id="@+id/setting_seporate2"
+            app:layout_constraintTop_toBottomOf="@id/setting_label_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/separate" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setting_btn_bio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_btn_login"
+        style="@style/settingButton">
+
+        <TextView
+            android:id="@+id/setting_text_bio"
+            android:text="@string/setting_default_bio"
+            app:layout_constraintTop_toTopOf="@id/setting_btn_bio"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/normalText" />
+
+        <TextView
+            android:id="@+id/setting_label_bio"
+            android:text="@string/setting_label_bio"
+            app:layout_constraintTop_toBottomOf="@id/setting_text_bio"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/smallText" />
+
+        <View
+            android:id="@+id/setting_seporate3"
+            app:layout_constraintTop_toBottomOf="@id/setting_label_bio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/separate" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/setting_change_foto"
+        android:layout_width="@dimen/setting_btn_change_photo_width"
+        android:layout_height="@dimen/setting_btn_change_photo_height"
+        android:src="@drawable/ic_camera"
+        android:layout_marginEnd="@dimen/margin_horizontal"
+        app:civ_border_color="@color/telegram_accend"
+        app:civ_border_width="@dimen/setting_avatar_border"
+        app:civ_circle_background_color="@color/telegram_accend"
+        app:layout_constraintBottom_toBottomOf="@+id/setting_header_block"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_header_block" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
