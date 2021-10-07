@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/telegram</item>
         <item name="colorPrimaryVariant">@color/telegram_dark</item>
         <item name="colorOnPrimary">@color/telegram_accend</item>
+        <item name="popupTheme">@style/actionMenu</item>
         <item name="android:colorBackground">@color/telegram_accend
         </item>  <!-- задний фон приложения -->
 
@@ -36,5 +37,11 @@
         </item>
         <item name="material_drawer_legacy_style">false
         </item> <!-- Enables legacy Material 1 style -->
+    </style>
+
+    <style name="actionMenu" parent="Theme.AppCompat.Light">
+        <item name="background">@color/telegram_accend</item>
+        <item name="actionMenuTextColor">@color/colorBlack</item>
+
     </style>
 </resources>

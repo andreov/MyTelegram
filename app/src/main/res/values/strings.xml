@@ -12,5 +12,7 @@
     <string name="setting_label_login">Имя пользователя</string>
     <string name="setting_default_bio">О себе</string>
     <string name="setting_label_bio">Напишите немного о себе</string>
+    <string name="setting_menu_ch_name">Изменить имя</string>
+    <string name="setting_menu_exit">Выход</string>
 
 </resources>

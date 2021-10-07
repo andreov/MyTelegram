@@ -1,5 +1,7 @@
 package ru.amorzn63.mytelegram.ui.fragments
 
+import android.view.Menu
+import android.view.MenuInflater
 import ru.amorzn63.mytelegram.R
 
 
@@ -18,8 +20,12 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
     override fun onResume() {
         super.onResume()
+        setHasOptionsMenu(true) // вкл меню в контексте
 
     }
 
-
+    // добавление меню во фрагменте (? - безопасный вызов)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        activity?.menuInflater?.inflate(R.menu.setting_action_menu, menu)
+    }
 }
