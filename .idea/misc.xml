@@ -6,7 +6,10 @@
         <entry key="app/src/main/res/drawable/header.xml" value="0.1140625" />
         <entry key="app/src/main/res/drawable/ripple_effect.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2289156626506024" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1921875" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/fragment_enter_code.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_enter_phone_number.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/menu/setting_action_menu.xml" value="0.20729166666666668" />
       </map>
