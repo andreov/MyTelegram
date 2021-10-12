@@ -13,6 +13,7 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.ui.fragments.SettingsFragment
+import ru.amorzn63.mytelegram.utilits.replaceFragment
 
 // класс для выдвижного меню
 
@@ -90,10 +91,7 @@ class AppDrawer(
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
                     when (position) {
-                        7 -> mainActivity.supportFragmentManager.beginTransaction()
-                            .addToBackStack(null)
-                            .replace(R.id.dataContainer, SettingsFragment())
-                            .commit()  // устанавливаем фрагмент настройки в контейнер
+                        7 -> mainActivity.replaceFragment(SettingsFragment())
                     }
                     return false
                 }

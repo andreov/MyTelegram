@@ -6,6 +6,8 @@ import ru.amorzn63.mytelegram.R
 
 import ru.amorzn63.mytelegram.databinding.ActivityRegisterBinding
 import ru.amorzn63.mytelegram.ui.fragments.EnterPhoneNumberFragment
+import ru.amorzn63.mytelegram.utilits.replaceActivity
+import ru.amorzn63.mytelegram.utilits.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -23,10 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         mToolbar = mBinding.registerToolbar
         setSupportActionBar(mToolbar)
         title = getString(R.string.register_title_phone)
-        supportFragmentManager.beginTransaction()
-            .add(R.id.registerDataContainer, EnterPhoneNumberFragment())
-            .commit()
+        replaceFragment(EnterPhoneNumberFragment())
     }
-
 
 }

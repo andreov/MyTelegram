@@ -7,6 +7,8 @@ import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
 import ru.amorzn63.mytelegram.ui.fragments.ChatsFragment
 import ru.amorzn63.mytelegram.ui.objects.AppDrawer
+import ru.amorzn63.mytelegram.utilits.replaceActivity
+import ru.amorzn63.mytelegram.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,12 +32,9 @@ class MainActivity : AppCompatActivity() {
         if (false) {
             setSupportActionBar(mToolbar)  //прорисовка
             mAppDrawer.create()
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.dataContainer, ChatsFragment())
-                .commit()  // устанавливаем фрагмент в контейнер default
+            replaceFragment(ChatsFragment())
         } else {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            replaceActivity(RegisterActivity())
         }
     }
 
