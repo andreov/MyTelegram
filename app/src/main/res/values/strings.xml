@@ -15,6 +15,13 @@
     <string name="setting_menu_ch_name">Изменить имя</string>
     <string name="setting_menu_exit">Выход</string>
     <string name="hint_register_input_phone">Введите номер телефона</string>
+    <string name="hint_register_input_code">- - - - - -</string>
+
     <string name="decription_register_btn_next">next</string>
+    <string name="cd_register_image">register image</string>
+    <string name="register_code">Введите код</string>
+    <string name="register_text_sms">Мы отправили СМС с кодом проверки на ваш телефон</string>
+    <string name="register_title_phone">Ваш телефон</string>
+    <string name="register_toast_enter_phone">Введите номер телефона</string>
 
 </resources>

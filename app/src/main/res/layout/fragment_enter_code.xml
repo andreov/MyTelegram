@@ -6,17 +6,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.EnterCodeFragment">
 
-    <EditText
-        android:id="@+id/register_input_phone_number"
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/register_image"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_horizontal"
-        android:hint="@string/hint_register_input_phone"
-        android:autofillHints="phone"
-        android:inputType="phone"
+        android:layout_marginTop="@dimen/margin_vertical_large"
+        android:contentDescription="@string/cd_register_image"
+        android:src="@drawable/register_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/register_text_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/color_black"
+        android:gravity="center"
+        android:textSize="@dimen/text_normal"
+        android:layout_margin="@dimen/margin_vertical"
+        android:text="@string/register_code"
+        app:layout_constraintTop_toBottomOf="@id/register_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/register_text_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/smallText"
+        android:text="@string/register_text_sms"
+        android:layout_margin="@dimen/margin_vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/register_text_code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <EditText
+        android:id="@+id/register_input_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_normal"
+        android:textStyle="bold"
+        android:textColor="@color/color_black"
+        android:maxLines="1"
+        android:maxLength="6"
+        android:gravity="center"
+        android:padding="@dimen/appPadding"
+        android:layout_margin="@dimen/margin_horizontal"
+        android:hint="@string/hint_register_input_code"
+        android:textColorHint="@color/colorGrey"
+        android:autofillHints=""
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_text_sms"
         tools:ignore="TouchTargetSizeCheck" />
 
 

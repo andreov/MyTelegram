@@ -1,7 +1,9 @@
 package ru.amorzn63.mytelegram
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
 import ru.amorzn63.mytelegram.ui.fragments.ChatsFragment
 import ru.amorzn63.mytelegram.ui.objects.AppDrawer
@@ -25,12 +27,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)  //прорисовка
-        mAppDrawer.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer, ChatsFragment())
-            .commit()  // устанавливаем фрагмент в контейнер default
-
+        if (false) {
+            setSupportActionBar(mToolbar)  //прорисовка
+            mAppDrawer.create()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.dataContainer, ChatsFragment())
+                .commit()  // устанавливаем фрагмент в контейнер default
+        } else {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initFileds() {
