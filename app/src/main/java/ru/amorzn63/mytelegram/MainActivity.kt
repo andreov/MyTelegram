@@ -3,6 +3,7 @@ package ru.amorzn63.mytelegram
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
 import ru.amorzn63.mytelegram.ui.fragments.ChatsFragment
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding  // объевляем переменную binding
     private lateinit var mToolbar: androidx.appcompat.widget.Toolbar
     private lateinit var mAppDrawer: AppDrawer //Drawer
+    private lateinit var mAutht: FirebaseAuth  //аутентификация через firebase
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        if (false) {
+        if (mAutht.currentUser != null) {
             setSupportActionBar(mToolbar)  //прорисовка
             mAppDrawer.create()
             replaceFragment(ChatsFragment())
@@ -41,6 +44,6 @@ class MainActivity : AppCompatActivity() {
     private fun initFileds() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar) // init Drawer
+        mAutht = FirebaseAuth.getInstance()
     }
-
 }
