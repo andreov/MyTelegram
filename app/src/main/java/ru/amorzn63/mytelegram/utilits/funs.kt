@@ -41,8 +41,8 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment, addStack: Boolean = tr
 
 // переход между фрагментами
 fun Fragment.replaceFragment(fragment: Fragment) {
-    this.fragmentManager?.beginTransaction()
-        ?.addToBackStack(null)
-        ?.replace(R.id.dataContainer, fragment)
-        ?.commit()
+    this.parentFragmentManager.beginTransaction()
+        .addToBackStack(null)
+        .replace(R.id.dataContainer, fragment)
+        .commit()
 }
