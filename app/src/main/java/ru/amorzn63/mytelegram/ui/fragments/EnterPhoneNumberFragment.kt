@@ -2,13 +2,13 @@ package ru.amorzn63.mytelegram.ui.fragments
 
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.activities.RegisterActivity
+import ru.amorzn63.mytelegram.utilits.AUTH
 import ru.amorzn63.mytelegram.utilits.replaceActivity
 import ru.amorzn63.mytelegram.utilits.replaceFragment
 import ru.amorzn63.mytelegram.utilits.showToast
@@ -19,14 +19,14 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
 
     private lateinit var mPhoneNumber: String
     private lateinit var mCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    private lateinit var mAuth: FirebaseAuth
+    //private lateinit var mAuth: FirebaseAuth
 
     override fun onStart() {
         super.onStart()
-        mAuth = FirebaseAuth.getInstance()
+        //AUTH = FirebaseAuth.getInstance()
         mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {     // если аутент прошла
-                mAuth.signInWithCredential(credential).addOnCompleteListener {
+                AUTH.signInWithCredential(credential).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showToast("Добро пожаловать!")
                         (activity as RegisterActivity).replaceActivity(MainActivity())

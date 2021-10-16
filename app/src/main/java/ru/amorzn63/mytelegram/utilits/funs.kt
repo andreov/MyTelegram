@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.amorzn63.mytelegram.R
-import ru.amorzn63.mytelegram.activities.RegisterActivity
-import ru.amorzn63.mytelegram.ui.fragments.ChatsFragment
+
 
 //функции-расширения
 
@@ -24,11 +23,20 @@ fun AppCompatActivity.replaceActivity(activity: AppCompatActivity) {
 }
 
 // вызов фрагмента из активити
-fun AppCompatActivity.replaceFragment(fragment: Fragment) {
-    supportFragmentManager.beginTransaction()
-        .addToBackStack(null)
-        .replace(R.id.dataContainer, fragment)
-        .commit()  // устанавливаем фрагмент в контейнер default
+fun AppCompatActivity.replaceFragment(fragment: Fragment, addStack: Boolean = true) {
+    if (addStack) {
+        supportFragmentManager.beginTransaction()
+            .addToBackStack(null)
+            .replace(R.id.dataContainer, fragment)
+            .commit()  // устанавливаем фрагмент в контейнер default
+    } else {
+        supportFragmentManager.beginTransaction()
+            //.addToBackStack(null)
+            .replace(R.id.dataContainer, fragment)
+            .commit()
+
+
+    }
 }
 
 // переход между фрагментами
