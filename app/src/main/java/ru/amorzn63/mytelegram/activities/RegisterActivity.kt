@@ -6,6 +6,7 @@ import ru.amorzn63.mytelegram.R
 
 import ru.amorzn63.mytelegram.databinding.ActivityRegisterBinding
 import ru.amorzn63.mytelegram.ui.fragments.EnterPhoneNumberFragment
+import ru.amorzn63.mytelegram.utilits.initFirebase
 import ru.amorzn63.mytelegram.utilits.replaceActivity
 import ru.amorzn63.mytelegram.utilits.replaceFragment
 
@@ -18,6 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
     }
 
     override fun onStart() {

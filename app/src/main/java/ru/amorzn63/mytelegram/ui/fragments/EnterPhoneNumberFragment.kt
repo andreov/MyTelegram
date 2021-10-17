@@ -71,7 +71,6 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             TimeUnit.SECONDS,
             activity as RegisterActivity,
             mCallback
-
         )
     }
 }

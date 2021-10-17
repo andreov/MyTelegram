@@ -6,10 +6,7 @@ import kotlinx.android.synthetic.main.fragment_enter_code.*
 import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.activities.RegisterActivity
-import ru.amorzn63.mytelegram.utilits.AUTH
-import ru.amorzn63.mytelegram.utilits.AppTextWatcher
-import ru.amorzn63.mytelegram.utilits.replaceActivity
-import ru.amorzn63.mytelegram.utilits.showToast
+import ru.amorzn63.mytelegram.utilits.*
 
 
 class EnterCodeFragment(val phoneNumber: String, val id: String) :
@@ -32,10 +29,21 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
         val credential = PhoneAuthProvider.getCredential(id, code)
         AUTH.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                showToast("Добро пожаловать!")
-                (activity as RegisterActivity).replaceActivity(MainActivity())
-            } else showToast(it.exception?.message.toString())  // если есть проблема с переходом
+                val uid: String = AUTH.currentUser?.uid.toString()  //получем id user
+                val dataMap = mutableMapOf<String, Any>()  // map данных полей базы
+                dataMap[CHILD_ID] = uid
+                dataMap[CHILD_PHONE] = phoneNumber
+                dataMap[CHILD_USERNAME] = uid
+
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid)
+                    .updateChildren(dataMap)  // заполняем удаленную базу
+                    .addOnCompleteListener { task2 ->
+                        if (task2.isSuccessful) {
+                            showToast("Добро пожаловать!")
+                            (activity as RegisterActivity).replaceActivity(MainActivity())
+                        } else showToast(it.exception?.message.toString())  // если есть проблема заполнения
+                    }
+            } else showToast(it.exception?.message.toString())  // если есть проблема auth
         }
     }
-
 }
