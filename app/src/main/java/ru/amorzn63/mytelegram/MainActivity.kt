@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding  // объевляем переменную binding
     private lateinit var mToolbar: androidx.appcompat.widget.Toolbar
-    private lateinit var mAppDrawer: AppDrawer //Drawer
+    lateinit var mAppDrawer: AppDrawer //Drawer
     //была создана статическая переменная AUTH in FirebaseHelper
     //private lateinit var mAutht: FirebaseAuth  //аутентификация через firebase
 

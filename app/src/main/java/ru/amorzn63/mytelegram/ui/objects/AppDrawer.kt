@@ -3,6 +3,7 @@ package ru.amorzn63.mytelegram.ui.objects
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -24,10 +25,31 @@ class AppDrawer(
 
     private lateinit var mDrawer: Drawer // леременная выдвижного тулбара
     private lateinit var mHeader: AccountHeader // леременная верхняя часть выдвижки
+    private lateinit var mDrawerLayout: DrawerLayout
 
     fun create() {
         createHeadbar()   // создание верха выдвижки
         createDrawer()   //создание выдвижного меню
+        mDrawerLayout = mDrawer.drawerLayout
+    }
+
+    fun disableDrawer() {
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false  // выключение гамбургера
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)   // вкл кнопки назад
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        toolbar.setNavigationOnClickListener {
+            mainActivity.supportFragmentManager.popBackStack()
+        }
+    }
+
+    fun enableDrawer() {
+        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)   // выкл кнопки назад
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true  // включение гамбургера
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        toolbar.setNavigationOnClickListener {
+            mDrawer.openDrawer()
+        }
+
     }
 
     private fun createDrawer() {
