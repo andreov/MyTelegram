@@ -8,6 +8,7 @@ import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.utilits.AUTH
 import ru.amorzn63.mytelegram.utilits.replaceActivity
+import ru.amorzn63.mytelegram.utilits.replaceFragment
 
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -34,13 +35,14 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         activity?.menuInflater?.inflate(R.menu.setting_action_menu, menu)
     }
 
-    // выход из профиля
+    // мегю выходф из профиля и смены имени
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.setting_menu_exit -> {
                 AUTH.signOut()
                 (activity as MainActivity).replaceActivity(RegisterActivity())
             }
+            R.id.setting_menu_ch_name -> replaceFragment(ChangeNameFragment())
         }
         return true
     }

@@ -23,5 +23,9 @@
     <string name="register_text_sms">Мы отправили СМС с кодом проверки на ваш телефон</string>
     <string name="register_title_phone">Ваш телефон</string>
     <string name="register_toast_enter_phone">Введите номер телефона</string>
+    <string name="settings_Hint_input_name">Имя</string>
+    <string name="setting_hint_surname">Фамилия</string>
+    <string name="setting_toast_name_is_empty">Имя не может быть пустым</string>
+    <string name="toast_data_update">Данные обновлены</string>
 
 </resources>
