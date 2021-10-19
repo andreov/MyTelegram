@@ -4,14 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
+import ru.amorzn63.mytelegram.models.User
 import ru.amorzn63.mytelegram.ui.fragments.ChatsFragment
 import ru.amorzn63.mytelegram.ui.objects.AppDrawer
-import ru.amorzn63.mytelegram.utilits.AUTH
-import ru.amorzn63.mytelegram.utilits.initFirebase
-import ru.amorzn63.mytelegram.utilits.replaceActivity
-import ru.amorzn63.mytelegram.utilits.replaceFragment
+import ru.amorzn63.mytelegram.utilits.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,5 +49,16 @@ class MainActivity : AppCompatActivity() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar) // init Drawer
         initFirebase()
+        initUser()  //  читаем базу даных при запуске приложения
+
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            .addListenerForSingleValueEvent(AppValueEventListener {    //запустится один раз
+                USER = it.getValue(USER::class.java) ?: User()  // элвис-оператор
+
+            })
+
     }
 }

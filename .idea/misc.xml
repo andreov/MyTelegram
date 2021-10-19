@@ -11,7 +11,7 @@
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/layout/fragment_enter_code.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_enter_phone_number.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.33" />
         <entry key="app/src/main/res/menu/setting_action_menu.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/menu/settings_menu_confirm.xml" value="0.20729166666666668" />
       </map>

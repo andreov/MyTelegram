@@ -32,7 +32,7 @@
             android:id="@+id/setting_user_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/setting_user_name"
+            tools:text="@string/setting_user_name"
             android:textColor="@color/telegram_accend"
             android:textSize="@dimen/text_normal"
             android:layout_marginStart="@dimen/margin_horizontal"
@@ -45,7 +45,7 @@
             android:id="@+id/setting_user_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/setting_status"
+            tools:text="@string/setting_status"
             android:textColor="@color/telegram_accend_dark"
             android:textSize="@dimen/text_small"
             android:layout_marginStart="@dimen/margin_horizontal"
@@ -76,7 +76,7 @@
 
         <TextView
             android:id="@+id/setting_text_phone"
-            android:text="@string/setting_default_number"
+            tools:text="@string/setting_default_number"
             app:layout_constraintTop_toTopOf="@id/setting_btn_phone"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/normalText" />
@@ -107,7 +107,7 @@
 
         <TextView
             android:id="@+id/setting_text_login"
-            android:text="@string/setting_login_default"
+            tools:text="@string/setting_login_default"
             app:layout_constraintTop_toTopOf="@id/setting_btn_login"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/normalText" />
@@ -137,7 +137,7 @@
 
         <TextView
             android:id="@+id/setting_text_bio"
-            android:text="@string/setting_default_bio"
+            tools:text="@string/setting_default_bio"
             app:layout_constraintTop_toTopOf="@id/setting_btn_bio"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/normalText" />

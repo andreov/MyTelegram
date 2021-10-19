@@ -3,10 +3,12 @@ package ru.amorzn63.mytelegram.ui.fragments
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.utilits.AUTH
+import ru.amorzn63.mytelegram.utilits.USER
 import ru.amorzn63.mytelegram.utilits.replaceActivity
 import ru.amorzn63.mytelegram.utilits.replaceFragment
 
@@ -27,7 +29,16 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true) // вкл меню в контексте
+        initFields()
 
+    }
+
+    private fun initFields() {
+        setting_text_bio.text = USER.bio
+        setting_text_login.text = USER.username
+        setting_text_phone.text = USER.phone
+        setting_user_status.text = USER.status
+        setting_user_name.text = USER.fullname
     }
 
     // добавление меню во фрагменте (? - безопасный вызов)

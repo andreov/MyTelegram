@@ -1,20 +1,22 @@
 package ru.amorzn63.mytelegram.ui.fragments
 
-import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.fragment_change_name.*
 import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.utilits.*
-import kotlin.concurrent.fixedRateTimer
 
-class ChangeNameFragment : Fragment(R.layout.fragment_change_name) {
+class ChangeNameFragment : BaseFragment(R.layout.fragment_change_name) {
 
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
+        val fullnameList: List<String> = USER.fullname.split(" ")  //разделение fullname
+        settings_input_name.setText(fullnameList[0])
+        settings_input_surname.setText(fullnameList[1])
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
