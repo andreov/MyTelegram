@@ -29,10 +29,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/setting_user_name"
+            android:id="@+id/setting_fullname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="@string/setting_user_name"
+            tools:text="@string/setting_fullname"
             android:textColor="@color/telegram_accend"
             android:textSize="@dimen/text_normal"
             android:layout_marginStart="@dimen/margin_horizontal"
@@ -51,7 +51,7 @@
             android:layout_marginStart="@dimen/margin_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/setting_user_foto"
-            app:layout_constraintTop_toBottomOf="@id/setting_user_name" />
+            app:layout_constraintTop_toBottomOf="@id/setting_fullname" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,23 +99,23 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/setting_btn_login"
+        android:id="@+id/setting_btn_username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/setting_btn_phone"
         style="@style/settingButton">
 
         <TextView
-            android:id="@+id/setting_text_login"
-            tools:text="@string/setting_login_default"
-            app:layout_constraintTop_toTopOf="@id/setting_btn_login"
+            android:id="@+id/setting_username"
+            tools:text="@string/setting_username"
+            app:layout_constraintTop_toTopOf="@id/setting_btn_username"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/normalText" />
 
         <TextView
             android:id="@+id/setting_label_login"
-            android:text="@string/setting_label_login"
-            app:layout_constraintTop_toBottomOf="@id/setting_text_login"
+            android:text="@string/setting_label_username"
+            app:layout_constraintTop_toBottomOf="@id/setting_username"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/smallText" />
 
@@ -132,7 +132,7 @@
         android:id="@+id/setting_btn_bio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/setting_btn_login"
+        app:layout_constraintTop_toBottomOf="@id/setting_btn_username"
         style="@style/settingButton">
 
         <TextView

@@ -14,6 +14,9 @@ lateinit var USER: User
 
 // название полей базы
 const val NODE_USERS = "users"
+const val NODE_USERSNAMES = "usersmames"
+
+
 const val CHILD_ID = "id"
 const val CHILD_PHONE = "phone"
 const val CHILD_USERNAME = "username"
