@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/ripple_effect.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2289156626506024" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1921875" />
+        <entry key="app/src/main/res/layout/fragment_change_bio.xml" value="0.1921875" />
         <entry key="app/src/main/res/layout/fragment_change_name.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_change_user_name.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.20729166666666668" />

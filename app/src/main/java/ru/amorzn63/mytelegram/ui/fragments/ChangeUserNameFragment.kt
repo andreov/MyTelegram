@@ -9,29 +9,18 @@ import ru.amorzn63.mytelegram.utilits.*
 import java.util.*
 
 
-class ChangeUserNameFragment : BaseFragment(R.layout.fragment_change_user_name) {
+class ChangeUserNameFragment : BaseChangeFragment(R.layout.fragment_change_user_name) {
 
     lateinit var mNewUserName: String
 
     override fun onResume() {
         super.onResume()
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
         settings_input_user_name.setText(USER.username)
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        (activity as MainActivity).menuInflater.inflate(R.menu.settings_menu_confirm, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.settings_confirm_change -> change()
-        }
-        return true
-    }
-
-    private fun change() {
+    override fun change() {
         mNewUserName = settings_input_user_name.text.toString().lowercase(Locale.getDefault())
         if (mNewUserName.isEmpty()) {
             showToast("Поле пустое")

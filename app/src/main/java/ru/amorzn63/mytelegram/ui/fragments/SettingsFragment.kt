@@ -40,6 +40,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         setting_user_status.text = USER.status
         setting_fullname.text = USER.fullname
         setting_btn_username.setOnClickListener { replaceFragment(ChangeUserNameFragment()) }
+        setting_btn_bio.setOnClickListener { replaceFragment(ChangeBioFragment()) }
     }
 
     // добавление меню во фрагменте (? - безопасный вызов)
