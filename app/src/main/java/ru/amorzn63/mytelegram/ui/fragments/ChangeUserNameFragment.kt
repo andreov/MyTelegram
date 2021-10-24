@@ -1,9 +1,6 @@
 package ru.amorzn63.mytelegram.ui.fragments
 
-import android.view.*
 import kotlinx.android.synthetic.main.fragment_change_user_name.*
-import kotlinx.android.synthetic.main.fragment_settings.*
-import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.utilits.*
 import java.util.*
@@ -38,7 +35,7 @@ class ChangeUserNameFragment : BaseChangeFragment(R.layout.fragment_change_user_
     }
 
     private fun changeUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERSNAMES).child(mNewUserName).setValue(UID)
+        REF_DATABASE_ROOT.child(NODE_USERSNAMES).child(mNewUserName).setValue(CURRENT_UID)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     updateCurentUsername()
@@ -47,7 +44,7 @@ class ChangeUserNameFragment : BaseChangeFragment(R.layout.fragment_change_user_
     }
 
     private fun updateCurentUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_USERNAME)
+        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME)
             .setValue(mNewUserName)
             .addOnCompleteListener {
                 if (it.isSuccessful) {

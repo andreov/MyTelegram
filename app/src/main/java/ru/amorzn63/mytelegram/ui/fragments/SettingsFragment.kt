@@ -1,16 +1,16 @@
 package ru.amorzn63.mytelegram.ui.fragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_settings.*
-import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.activities.RegisterActivity
-import ru.amorzn63.mytelegram.utilits.AUTH
-import ru.amorzn63.mytelegram.utilits.USER
-import ru.amorzn63.mytelegram.utilits.replaceActivity
-import ru.amorzn63.mytelegram.utilits.replaceFragment
+import ru.amorzn63.mytelegram.utilits.*
 
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
@@ -41,6 +41,32 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         setting_fullname.text = USER.fullname
         setting_btn_username.setOnClickListener { replaceFragment(ChangeUserNameFragment()) }
         setting_btn_bio.setOnClickListener { replaceFragment(ChangeBioFragment()) }
+        setting_change_foto.setOnClickListener { changeFotoUser() }
+    }
+
+    private fun changeFotoUser() {
+        CropImage.activity()
+            .setAspectRatio(1, 1)
+            .setRequestedSize(600, 600)
+            .setCropShape(CropImageView.CropShape.OVAL)
+            .start(APP_ACTIVITY)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && requestCode == RESULT_OK && data != null
+        ) {
+            val uri = CropImage.getActivityResult(data).uri
+            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+                .child(CURRENT_UID)
+            path.putFile(uri).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    showToast(getString(R.string.toast_data_update))
+                }
+            }
+
+
+        }
     }
 
     // добавление меню во фрагменте (? - безопасный вызов)
@@ -53,7 +79,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         when (item.itemId) {
             R.id.setting_menu_exit -> {
                 AUTH.signOut()
-                (activity as MainActivity).replaceActivity(RegisterActivity())
+                APP_ACTIVITY.replaceActivity(RegisterActivity())
             }
             R.id.setting_menu_ch_name -> replaceFragment(ChangeNameFragment())
         }

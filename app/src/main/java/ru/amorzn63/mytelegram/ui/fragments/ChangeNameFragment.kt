@@ -1,11 +1,6 @@
 package ru.amorzn63.mytelegram.ui.fragments
 
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_change_name.*
-import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.utilits.*
 
@@ -33,7 +28,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
             showToast(getString(R.string.setting_toast_name_is_empty))
         } else {
             val fullname = "$name $surname"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
                 .child(CHILD_FULLNAME)  //запись в базу полного имени
                 .setValue(fullname).addOnCompleteListener {
                     if (it.isSuccessful) {

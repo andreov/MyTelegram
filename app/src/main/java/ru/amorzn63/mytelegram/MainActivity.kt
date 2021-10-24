@@ -1,12 +1,7 @@
 package ru.amorzn63.mytelegram
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
 import ru.amorzn63.mytelegram.models.User
@@ -31,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        APP_ACTIVITY = this  //ссылка на kонтекст MainActivity
         initFileds()   // инициализация переменных
         initFunc()
     }
@@ -54,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUser() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
             .addListenerForSingleValueEvent(AppValueEventListener {    //запустится один раз
                 USER = it.getValue(USER::class.java) ?: User()  // элвис-оператор
 
