@@ -1,7 +1,11 @@
 package ru.amorzn63.mytelegram
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
+import com.theartofdev.edmodo.cropper.CropImage
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
 import ru.amorzn63.mytelegram.models.User
@@ -22,14 +26,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)  // инициализация binding
         setContentView(mBinding.root)
-    }
-
-    override fun onStart() {
-        super.onStart()
         APP_ACTIVITY = this  //ссылка на kонтекст MainActivity
         initFileds()   // инициализация переменных
         initFunc()
     }
+
 
     private fun initFunc() {
         if (AUTH.currentUser != null) {
@@ -55,6 +56,6 @@ class MainActivity : AppCompatActivity() {
                 USER = it.getValue(USER::class.java) ?: User()  // элвис-оператор
 
             })
-
     }
+
 }
