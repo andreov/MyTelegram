@@ -1,5 +1,6 @@
 package ru.amorzn63.mytelegram.utilits
 
+import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -36,5 +37,26 @@ fun initFirebase() {
     USER = User()
     CURRENT_UID = AUTH.currentUser?.uid.toString()
     REF_STORAGE_ROOT = FirebaseStorage.getInstance().reference
-
 }
+
+inline fun putUrlToDatabase(url: String, crossinline function: () -> Unit) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
+        .child(CHILD_PHOTO_URL).setValue(url)
+        .addOnSuccessListener { function() }  //Lambda если все норм
+        .addOnFailureListener { showToast(it.message.toString()) }  // если нет
+}
+
+inline fun getUrlFromStorage(path: StorageReference, crossinline function: (url: String) -> Unit) {
+    path.downloadUrl
+        .addOnSuccessListener { function(it.toString()) }  //Lambda если все норм
+        .addOnFailureListener { showToast(it.message.toString()) }  // если нет
+}
+
+inline fun putImageToStorage(uri: Uri, path: StorageReference, crossinline function: () -> Unit) {
+    path.putFile(uri)
+        .addOnSuccessListener { function() }  //Lambda если все норм
+        .addOnFailureListener { showToast(it.message.toString()) }  // если нет
+}
+
+// inline не создает функцию и объекты а просто подставляет код функции
+// обеспечивает высокую производительность

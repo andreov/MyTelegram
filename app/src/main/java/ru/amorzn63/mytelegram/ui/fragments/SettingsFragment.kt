@@ -2,9 +2,12 @@ package ru.amorzn63.mytelegram.ui.fragments
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import com.google.firebase.storage.StorageReference
+import com.mikepenz.materialdrawer.icons.MaterialDrawerFont.url
 import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
@@ -43,6 +46,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         setting_btn_username.setOnClickListener { replaceFragment(ChangeUserNameFragment()) }
         setting_btn_bio.setOnClickListener { replaceFragment(ChangeBioFragment()) }
         setting_change_foto.setOnClickListener { changeFotoUser() }
+        setting_user_foto.downloadAndSetImage(USER.photoUrl)
     }
 
     private fun changeFotoUser() {
@@ -61,26 +65,14 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             val uri = CropImage.getActivityResult(data).uri
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
                 .child(CURRENT_UID)
-            path.putFile(uri).addOnCompleteListener { task1 ->
-                if (task1.isSuccessful) {
-                    //showToast(getString(R.string.toast_data_update))
-                    // получение url картинки
-                    path.downloadUrl.addOnCompleteListener { task2 ->
-                        if (task2.isSuccessful) {
-                            val photoUrl = task2.result.toString()
-                            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
-                                .child(CHILD_PHOTO_URL).setValue(photoUrl)
-                                .addOnCompleteListener { task3 ->
-                                    if (task3.isSuccessful) {
-                                        setting_user_foto.downloadAndSetImage(photoUrl) // загрузка картинки
-                                        showToast(getString(R.string.toast_data_update))
-                                        USER.photoUrl = photoUrl
 
-                                    }
+            putImageToStorage(uri, path) {     //exst fun  it=url
+                getUrlFromStorage(path) {
+                    putUrlToDatabase(it) {
+                        setting_user_foto.downloadAndSetImage(it) // загрузка картинки
+                        showToast(getString(R.string.toast_data_update))
+                        USER.photoUrl = it
 
-                                }
-
-                        }
                     }
                 }
             }
