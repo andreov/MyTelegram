@@ -72,6 +72,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                         setting_user_foto.downloadAndSetImage(it) // загрузка картинки
                         showToast(getString(R.string.toast_data_update))
                         USER.photoUrl = it
+                        APP_ACTIVITY.mAppDrawer.updateHeader()
 
                     }
                 }
@@ -80,7 +81,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     }
 
 
-    // добавление меню во фрагменте (? - безопасный вызов)
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         activity?.menuInflater?.inflate(R.menu.setting_action_menu, menu)
     }

@@ -60,3 +60,14 @@ inline fun putImageToStorage(uri: Uri, path: StorageReference, crossinline funct
 
 // inline не создает функцию и объекты а просто подставляет код функции
 // обеспечивает высокую производительность
+
+inline fun initUser(crossinline function: () -> Unit) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
+        .addListenerForSingleValueEvent(AppValueEventListener {    //запустится один раз
+            USER = it.getValue(USER::class.java) ?: User()  // элвис-оператор
+            if (USER.username.isEmpty()) {
+                USER.username = CURRENT_UID
+            }
+            function()
+        })
+}

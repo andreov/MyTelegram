@@ -3,6 +3,7 @@ package ru.amorzn63.mytelegram.utilits
 import android.content.Context
 import android.content.Intent
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.getSystemService
@@ -61,9 +62,10 @@ fun hideKeyboard() {
 }
 
 // Extension fun для загрузки фото
-fun CircleImageView.downloadAndSetImage(url: String) {
+fun ImageView.downloadAndSetImage(url: String) {
     Picasso.get()  // загрузка картинки
         .load(url)
+        .fit()
         .placeholder(R.drawable.default_photo)
         .into(this)
 }

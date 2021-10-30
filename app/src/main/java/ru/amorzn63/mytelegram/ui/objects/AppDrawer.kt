@@ -1,6 +1,9 @@
 package ru.amorzn63.mytelegram.ui.objects
 
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -12,8 +15,12 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
+import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
+import com.mikepenz.materialdrawer.util.DrawerImageLoader
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.ui.fragments.SettingsFragment
+import ru.amorzn63.mytelegram.utilits.USER
+import ru.amorzn63.mytelegram.utilits.downloadAndSetImage
 import ru.amorzn63.mytelegram.utilits.replaceFragment
 
 // класс для выдвижного меню
@@ -26,8 +33,10 @@ class AppDrawer(
     private lateinit var mDrawer: Drawer // леременная выдвижного тулбара
     private lateinit var mHeader: AccountHeader // леременная верхняя часть выдвижки
     private lateinit var mDrawerLayout: DrawerLayout
+    private lateinit var mCurrentProfile: ProfileDrawerItem  //текущий профайл пользователя
 
     fun create() {
+        initLoader()
         createHeadbar()   // создание верха выдвижки
         createDrawer()   //создание выдвижного меню
         mDrawerLayout = mDrawer.drawerLayout
@@ -122,13 +131,35 @@ class AppDrawer(
     }
 
     private fun createHeadbar() {
+        mCurrentProfile = ProfileDrawerItem()
+            .withName(USER.fullname)
+            .withEmail(USER.phone)
+            .withIcon(USER.photoUrl)
+            .withIdentifier(200)
         mHeader = AccountHeaderBuilder()  //создание профиля аккаунта
             .withActivity(mainActivity)
             .withHeaderBackground(R.drawable.header) // цвет хедара
             .addProfiles(
-                ProfileDrawerItem().withName("Yura Petrov")
-                    .withEmail("+79108888888")
+                mCurrentProfile
+                //ProfileDrawerItem().withName("Yura Petrov")
+                // .withEmail("+79108888888")
             ).build()
+    }
 
+    fun updateHeader() {   // обновление хедара
+        mCurrentProfile
+            .withName(USER.fullname)
+            .withEmail(USER.phone)
+            .withIcon(USER.photoUrl)
+
+        mHeader.updateProfile(mCurrentProfile)
+    }
+
+    private fun initLoader() {
+        DrawerImageLoader.init(object : AbstractDrawerImageLoader() {
+            override fun set(imageView: ImageView, uri: Uri, placeholder: Drawable) {
+                imageView.downloadAndSetImage(uri.toString())
+            }
+        })
     }
 }

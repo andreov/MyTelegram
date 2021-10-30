@@ -27,8 +27,12 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)  // инициализация binding
         setContentView(mBinding.root)
         APP_ACTIVITY = this  //ссылка на kонтекст MainActivity
-        initFileds()   // инициализация переменных
-        initFunc()
+        initFirebase()
+        initUser {  //  читаем базу даных при запуске приложения
+            initFileds()   // инициализация переменных
+            initFunc()
+        }
+
     }
 
 
@@ -45,17 +49,10 @@ class MainActivity : AppCompatActivity() {
     private fun initFileds() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar) // init Drawer
-        initFirebase()
-        initUser()  //  читаем базу даных при запуске приложения
+
 
     }
 
-    private fun initUser() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
-            .addListenerForSingleValueEvent(AppValueEventListener {    //запустится один раз
-                USER = it.getValue(USER::class.java) ?: User()  // элвис-оператор
 
-            })
-    }
 
 }
