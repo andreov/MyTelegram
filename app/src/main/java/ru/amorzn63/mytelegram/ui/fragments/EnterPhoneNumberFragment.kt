@@ -19,7 +19,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
 
     private lateinit var mPhoneNumber: String
     private lateinit var mCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    //private lateinit var mAuth: FirebaseAuth
+
 
     override fun onStart() {
         super.onStart()

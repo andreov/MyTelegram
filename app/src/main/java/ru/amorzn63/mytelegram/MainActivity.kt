@@ -2,9 +2,11 @@ package ru.amorzn63.mytelegram
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
 import com.theartofdev.edmodo.cropper.CropImage
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
@@ -29,10 +31,17 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this  //ссылка на kонтекст MainActivity
         initFirebase()
         initUser {  //  читаем базу даных при запуске приложения
+            initContacts()
             initFileds()   // инициализация переменных
             initFunc()
         }
 
+    }
+
+    private fun initContacts() {     //получаем разрешение и читаем контакты
+        if (checkPermission(READ_CONTACTS)) {
+            showToast("Чтение контактов")
+        }
     }
 
 
@@ -62,5 +71,18 @@ class MainActivity : AppCompatActivity() {
         AppStates.updateState(AppStates.OFFLINE)
     }
 
-
+    override fun onRequestPermissionsResult(   //вызываем окошко предоставления прав
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (ContextCompat.checkSelfPermission(
+                APP_ACTIVITY,
+                READ_CONTACTS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            initContacts()
+        }
+    }
 }
