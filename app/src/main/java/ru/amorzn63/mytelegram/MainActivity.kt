@@ -8,6 +8,9 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import com.theartofdev.edmodo.cropper.CropImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.amorzn63.mytelegram.activities.RegisterActivity
 import ru.amorzn63.mytelegram.databinding.ActivityMainBinding
 import ru.amorzn63.mytelegram.models.User
@@ -31,17 +34,13 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this  //ссылка на kонтекст MainActivity
         initFirebase()
         initUser {  //  читаем базу даных при запуске приложения
-            initContacts()
+            CoroutineScope(Dispatchers.IO).launch {
+                initContacts()  //считываем контакты в корутине
+            }
             initFileds()   // инициализация переменных
             initFunc()
         }
 
-    }
-
-    private fun initContacts() {     //получаем разрешение и читаем контакты
-        if (checkPermission(READ_CONTACTS)) {
-            showToast("Чтение контактов")
-        }
     }
 
 
