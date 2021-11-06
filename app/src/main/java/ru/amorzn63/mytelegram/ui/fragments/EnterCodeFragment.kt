@@ -27,23 +27,28 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
         //showToast("OK")
         val code = register_input_code.text.toString()
         val credential = PhoneAuthProvider.getCredential(id, code)
-        AUTH.signInWithCredential(credential).addOnCompleteListener {
-            if (it.isSuccessful) {
+        AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 val uid: String = AUTH.currentUser?.uid.toString()  //получем id user
                 val dataMap = mutableMapOf<String, Any>()  // map данных полей базы
                 dataMap[CHILD_ID] = uid
                 dataMap[CHILD_PHONE] = phoneNumber
                 dataMap[CHILD_USERNAME] = uid
 
-                REF_DATABASE_ROOT.child(NODE_USERS).child(uid)
-                    .updateChildren(dataMap)  // заполняем удаленную базу
-                    .addOnCompleteListener { task2 ->
-                        if (task2.isSuccessful) {
-                            showToast("Добро пожаловать!")
-                            (activity as RegisterActivity).replaceActivity(MainActivity())
-                        } else showToast(it.exception?.message.toString())  // если есть проблема заполнения
+                REF_DATABASE_ROOT.child(NODE_PHONES).child(phoneNumber).setValue(uid)
+                    .addOnFailureListener { showToast(it.message.toString()) }
+                    .addOnSuccessListener {
+                        REF_DATABASE_ROOT.child(NODE_USERS).child(uid)
+                            .updateChildren(dataMap)  // заполняем удаленную базу
+                            .addOnSuccessListener {
+                                showToast("Добро пожаловать!")
+                                (activity as RegisterActivity).replaceActivity(MainActivity())
+                            }
+                            .addOnFailureListener { showToast(it.message.toString()) }
                     }
-            } else showToast(it.exception?.message.toString())  // если есть проблема auth
+
+
+            } else showToast(task.exception?.message.toString())  // если есть проблема auth
         }
     }
 }

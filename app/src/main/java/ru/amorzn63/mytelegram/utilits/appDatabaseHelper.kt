@@ -21,6 +21,8 @@ lateinit var USER: User
 // название полей базы
 const val NODE_USERS = "users"
 const val NODE_USERSNAMES = "usersmames"
+const val NODE_PHONES = "phohes"
+const val NODE_PHONES_CONTACTS = "phohes_contacts"
 
 const val FOLDER_PROFILE_IMAGE = "profile_image"
 
@@ -75,6 +77,7 @@ inline fun initUser(crossinline function: () -> Unit) {
         })
 }
 
+// функция ститывания контактов с тел книги. заполняет массив arrayContacts моделями CommonModel
 fun initContacts() {     //получаем разрешение и читаем контакты
     if (checkPermission(READ_CONTACTS)) {
         //showToast("Чтение контактов")
@@ -88,6 +91,7 @@ fun initContacts() {     //получаем разрешение и читаем
         )
         cursor?.let {
             while (it.moveToNext()) {
+                // читаем телефонную книгу пок есть элементы
                 val fullName =
                     it.getString(it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
                 val phone =
@@ -99,5 +103,21 @@ fun initContacts() {     //получаем разрешение и читаем
             }
         }
         cursor?.close()
+        updatePhonesToDatebase(arrayContacts)
     }
+}
+
+fun updatePhonesToDatebase(arrayContacts: ArrayList<CommonModel>) {
+    REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(AppValueEventListener {
+        it.children.forEach { snapshot ->
+            arrayContacts.forEach { contact ->
+                if (snapshot.key == contact.phone) {
+                    REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_UID)
+                        .child(snapshot.value.toString()).child(CHILD_ID)
+                        .setValue(snapshot.value.toString())
+                        .addOnFailureListener { showToast(it.message.toString()) }
+                }
+            }
+        }
+    })
 }
