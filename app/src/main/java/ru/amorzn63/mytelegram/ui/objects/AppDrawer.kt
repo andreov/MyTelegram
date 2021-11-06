@@ -18,17 +18,16 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
 import com.mikepenz.materialdrawer.util.DrawerImageLoader
 import ru.amorzn63.mytelegram.R
+import ru.amorzn63.mytelegram.ui.fragments.ContactsFragment
 import ru.amorzn63.mytelegram.ui.fragments.SettingsFragment
+import ru.amorzn63.mytelegram.utilits.APP_ACTIVITY
 import ru.amorzn63.mytelegram.utilits.USER
 import ru.amorzn63.mytelegram.utilits.downloadAndSetImage
 import ru.amorzn63.mytelegram.utilits.replaceFragment
 
 // класс для выдвижного меню
 
-class AppDrawer(
-    val mainActivity: AppCompatActivity,
-    val toolbar: Toolbar
-) {  //в конструкторо пнередается активити для контекса и тоолбар
+class AppDrawer {
 
     private lateinit var mDrawer: Drawer // леременная выдвижного тулбара
     private lateinit var mHeader: AccountHeader // леременная верхняя часть выдвижки
@@ -44,18 +43,18 @@ class AppDrawer(
 
     fun disableDrawer() {
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false  // выключение гамбургера
-        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)   // вкл кнопки назад
+        APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(true)   // вкл кнопки назад
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        toolbar.setNavigationOnClickListener {
-            mainActivity.supportFragmentManager.popBackStack()
+        APP_ACTIVITY.mToolbar.setNavigationOnClickListener {
+            APP_ACTIVITY.supportFragmentManager.popBackStack()
         }
     }
 
     fun enableDrawer() {
-        mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)   // выкл кнопки назад
+        APP_ACTIVITY.supportActionBar?.setDisplayHomeAsUpEnabled(false)   // выкл кнопки назад
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true  // включение гамбургера
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        toolbar.setNavigationOnClickListener {
+        APP_ACTIVITY.mToolbar.setNavigationOnClickListener {
             mDrawer.openDrawer()
         }
 
@@ -63,8 +62,8 @@ class AppDrawer(
 
     private fun createDrawer() {
         mDrawer = DrawerBuilder()
-            .withActivity(mainActivity)
-            .withToolbar(toolbar)
+            .withActivity(APP_ACTIVITY)
+            .withToolbar(APP_ACTIVITY.mToolbar)
             .withActionBarDrawerToggle(true)  //иконка меню - гамбургер
             .withSelectedItem(-1) //меню по умолчанию -1 - нет
             .withAccountHeader(mHeader)
@@ -121,13 +120,18 @@ class AppDrawer(
                     position: Int,
                     drawerItem: IDrawerItem<*>
                 ): Boolean {
-                    when (position) {
-                        7 -> mainActivity.replaceFragment(SettingsFragment())
-                    }
+                    clickToItem(position)
                     return false
                 }
 
             }).build()
+    }
+
+    private fun clickToItem(position: Int) {
+        when (position) {
+            7 -> APP_ACTIVITY.replaceFragment(SettingsFragment())
+            4 -> APP_ACTIVITY.replaceFragment(ContactsFragment())
+        }
     }
 
     private fun createHeadbar() {
@@ -137,7 +141,7 @@ class AppDrawer(
             .withIcon(USER.photoUrl)
             .withIdentifier(200)
         mHeader = AccountHeaderBuilder()  //создание профиля аккаунта
-            .withActivity(mainActivity)
+            .withActivity(APP_ACTIVITY)
             .withHeaderBackground(R.drawable.header) // цвет хедара
             .addProfiles(
                 mCurrentProfile

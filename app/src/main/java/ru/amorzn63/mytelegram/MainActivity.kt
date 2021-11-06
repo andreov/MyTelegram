@@ -21,7 +21,7 @@ import ru.amorzn63.mytelegram.utilits.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding  // объевляем переменную binding
-    private lateinit var mToolbar: androidx.appcompat.widget.Toolbar
+    lateinit var mToolbar: androidx.appcompat.widget.Toolbar
     lateinit var mAppDrawer: AppDrawer //Drawer
     //была создана статическая переменная AUTH in FirebaseHelper
     //private lateinit var mAutht: FirebaseAuth  //аутентификация через firebase
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFileds() {
         mToolbar = mBinding.mainToolbar
-        mAppDrawer = AppDrawer(this, mToolbar) // init Drawer
+        mAppDrawer = AppDrawer() // init Drawer
 
     }
 
