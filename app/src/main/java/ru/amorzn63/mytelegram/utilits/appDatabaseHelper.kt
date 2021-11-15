@@ -46,6 +46,7 @@ fun initFirebase() {
 }
 
 inline fun putUrlToDatabase(url: String, crossinline function: () -> Unit) {
+
     REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
         .child(CHILD_PHOTO_URL).setValue(url)
         .addOnSuccessListener { function() }  //Lambda если все норм
@@ -109,6 +110,20 @@ fun initContacts() {     //получаем разрешение и читаем
 }
 
 fun updatePhonesToDatebase(arrayContacts: ArrayList<CommonModel>) {
+    if (AUTH.currentUser != null) {
+        REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(AppValueEventListener {
+            it.children.forEach { snapshot ->
+                arrayContacts.forEach { contact ->
+                    if (snapshot.key == contact.phone) {
+                        REF_DATABASE_ROOT.child(NODE_PHONES_CONTACTS).child(CURRENT_UID)
+                            .child(snapshot.value.toString()).child(CHILD_ID)
+                            .setValue(snapshot.value.toString())
+                            .addOnFailureListener { showToast(it.message.toString()) }
+                    }
+                }
+            }
+        })
+    }
     REF_DATABASE_ROOT.child(NODE_PHONES).addListenerForSingleValueEvent(AppValueEventListener {
         it.children.forEach { snapshot ->
             arrayContacts.forEach { contact ->

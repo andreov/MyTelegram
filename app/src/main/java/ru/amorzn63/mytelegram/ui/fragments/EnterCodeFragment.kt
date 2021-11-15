@@ -29,6 +29,8 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
         val credential = PhoneAuthProvider.getCredential(id, code)
         AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                showToast("Добро пожаловать!")
+                (activity as RegisterActivity).replaceActivity(MainActivity())
                 val uid: String = AUTH.currentUser?.uid.toString()  //получем id user
                 val dataMap = mutableMapOf<String, Any>()  // map данных полей базы
                 dataMap[CHILD_ID] = uid
@@ -42,7 +44,7 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
                             .updateChildren(dataMap)  // заполняем удаленную базу
                             .addOnSuccessListener {
                                 showToast("Добро пожаловать!")
-                                (activity as RegisterActivity).replaceActivity(MainActivity())
+                                //(activity as RegisterActivity).replaceActivity(MainActivity())
                             }
                             .addOnFailureListener { showToast(it.message.toString()) }
                     }

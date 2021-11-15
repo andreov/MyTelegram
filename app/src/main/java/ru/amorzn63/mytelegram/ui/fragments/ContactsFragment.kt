@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_contacts.*
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.models.CommonModel
 import ru.amorzn63.mytelegram.utilits.*
+import java.util.jar.Manifest
 
 
 class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
@@ -78,7 +79,7 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
     override fun onStop() {
         super.onStop()
         mAdapter.stopListening()  // останавливаем адаптер
-        //APP_ACTIVITY.title=
+        //APP_ACTIVITY.title = ""
     }
 }
 

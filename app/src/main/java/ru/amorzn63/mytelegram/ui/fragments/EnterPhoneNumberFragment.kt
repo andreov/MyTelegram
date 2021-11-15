@@ -2,16 +2,15 @@ package ru.amorzn63.mytelegram.ui.fragments
 
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseException
+
 import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import ru.amorzn63.mytelegram.MainActivity
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.activities.RegisterActivity
-import ru.amorzn63.mytelegram.utilits.AUTH
-import ru.amorzn63.mytelegram.utilits.replaceActivity
-import ru.amorzn63.mytelegram.utilits.replaceFragment
-import ru.amorzn63.mytelegram.utilits.showToast
+import ru.amorzn63.mytelegram.utilits.*
 import java.util.concurrent.TimeUnit
 
 
@@ -36,6 +35,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
 
             override fun onVerificationFailed(p0: FirebaseException) {    // если произошла ошибка
                 showToast(p0.message.toString())
+                replaceFragment(EnterPhoneNumberFragment())
             }
 
             override fun onCodeSent(
@@ -65,12 +65,21 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
 
     private fun authUser() {
         mPhoneNumber = register_input_phone_number.text.toString()
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+        val options = PhoneAuthOptions.newBuilder(AUTH)
+            .setPhoneNumber(mPhoneNumber)       // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(activity as RegisterActivity)   // Activity (for callback binding)
+            .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
+
+        /*PhoneAuthProvider.getInstance().verifyPhoneNumber(
             mPhoneNumber,
             60,
             TimeUnit.SECONDS,
             activity as RegisterActivity,
             mCallback
-        )
+        )*/
     }
 }
