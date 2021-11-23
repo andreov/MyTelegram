@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_receving_message.xml" value="0.20092592592592592" />
+        <entry key="app/src/main/res/drawable/bg_user_message.xml" value="0.20092592592592592" />
         <entry key="app/src/main/res/drawable/header.xml" value="0.1140625" />
+        <entry key="app/src/main/res/drawable/ic_send.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/ripple_effect.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2289156626506024" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1921875" />
@@ -16,6 +19,9 @@
         <entry key="app/src/main/res/layout/fragment_enter_code.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_enter_phone_number.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_single_chat.xml" value="0.2041025641025641" />
+        <entry key="app/src/main/res/layout/message_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/toolbar_info.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/menu/setting_action_menu.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/menu/settings_menu_confirm.xml" value="0.20729166666666668" />
       </map>

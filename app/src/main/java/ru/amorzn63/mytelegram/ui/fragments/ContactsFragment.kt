@@ -1,7 +1,5 @@
 package ru.amorzn63.mytelegram.ui.fragments
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.contact_item.view.*
@@ -17,7 +14,6 @@ import kotlinx.android.synthetic.main.fragment_contacts.*
 import ru.amorzn63.mytelegram.R
 import ru.amorzn63.mytelegram.models.CommonModel
 import ru.amorzn63.mytelegram.utilits.*
-import java.util.jar.Manifest
 
 
 class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
@@ -26,6 +22,9 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
     private lateinit var mAdapter: FirebaseRecyclerAdapter<CommonModel, ContactsHolder>
     private lateinit var mRefContacts: DatabaseReference  // откуда скачивать данные
     private lateinit var mRefUser: DatabaseReference  // ссылка на юзера
+    private lateinit var mRefUserListener: AppValueEventListener                     //устранение утечки памяти
+    private var mapListener =
+        hashMapOf<DatabaseReference, AppValueEventListener>()  //устранение утечки памяти
 
 
     override fun onResume() {
@@ -56,13 +55,18 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
                 model: CommonModel
             ) {
                 mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(model.id)
-                mRefUser.addValueEventListener(AppValueEventListener {
+
+                mRefUserListener = AppValueEventListener {
                     val contact =
                         it.getCommonModel()  // создаем модельку для отображения информации
                     holder.name.text = contact.fullname
                     holder.status.text = contact.state
                     holder.photo.downloadAndSetImage(contact.photoUrl)
-                })
+                    holder.itemView.setOnClickListener { replaceFragment(SingleChatFragment(contact)) }
+                }
+
+                mRefUser.addValueEventListener(mRefUserListener)
+                mapListener[mRefUser] = mRefUserListener      //устранение утечки памяти
 
             }
         }
@@ -76,10 +80,12 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
         val photo: CircleImageView = view.contact_photo
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         mAdapter.stopListening()  // останавливаем адаптер
-        //APP_ACTIVITY.title = ""
+        mapListener.forEach {
+            it.key.removeEventListener(it.value)   //устранение утечки памяти
+        }
     }
 }
 

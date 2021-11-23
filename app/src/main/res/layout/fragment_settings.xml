@@ -23,7 +23,7 @@
             app:civ_circle_background_color="@color/telegram_accend"
             app:civ_border_color="@color/telegram_accend"
             app:civ_border_width="@dimen/setting_avatar_border"
-            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginStart="@dimen/app_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,8 +35,8 @@
             tools:text="@string/setting_fullname"
             android:textColor="@color/telegram_accend"
             android:textSize="@dimen/text_normal"
-            android:layout_marginStart="@dimen/margin_horizontal"
-            android:layout_marginTop="@dimen/margin_vertical"
+            android:layout_marginStart="@dimen/app_margin"
+            android:layout_marginTop="@dimen/app_small_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/setting_user_foto"
             app:layout_constraintTop_toTopOf="@+id/setting_user_foto" />
@@ -48,7 +48,7 @@
             tools:text="@string/setting_status"
             android:textColor="@color/telegram_accend_dark"
             android:textSize="@dimen/text_small"
-            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginStart="@dimen/app_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/setting_user_foto"
             app:layout_constraintTop_toBottomOf="@id/setting_fullname" />
@@ -63,7 +63,7 @@
         android:textSize="@dimen/text_small"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"
-        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginStart="@dimen/app_margin"
         android:layout_marginTop="@dimen/margin_vertical_large"
         app:layout_constraintTop_toBottomOf="@id/setting_header_block" />
 
@@ -163,7 +163,7 @@
         android:layout_width="@dimen/setting_btn_change_photo_width"
         android:layout_height="@dimen/setting_btn_change_photo_height"
         android:src="@drawable/ic_camera"
-        android:layout_marginEnd="@dimen/margin_horizontal"
+        android:layout_marginEnd="@dimen/app_margin"
         app:civ_border_color="@color/telegram_accend"
         app:civ_border_width="@dimen/setting_avatar_border"
         app:civ_circle_background_color="@color/telegram_accend"

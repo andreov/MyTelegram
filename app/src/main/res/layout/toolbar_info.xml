@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/app_margin"
-    style="@style/settingButton">
+    android:background="@color/colorPrimary">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/contact_photo"
-        android:layout_width="@dimen/setting_avatar_width"
-        android:layout_height="@dimen/setting_avatar_height"
+        android:id="@+id/toolbar_image"
+        android:layout_width="@dimen/toolbar_image_width"
+        android:layout_height="@dimen/toolbar_image_height"
         android:src="@drawable/default_photo"
+        app:civ_circle_background_color="@color/telegram_accend"
+        android:layout_marginStart="@dimen/app_small_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -20,14 +21,16 @@
         android:id="@+id/contact_fullname"
         style="@style/normalText"
         tools:text="Yura Petrov"
-        app:layout_constraintStart_toEndOf="@id/contact_photo"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/telegram_accend"
+        app:layout_constraintStart_toEndOf="@id/toolbar_image"
+        app:layout_constraintTop_toTopOf="@id/toolbar_image" />
 
     <TextView
         android:id="@+id/contact_state"
         style="@style/smallText"
         tools:text="В сети"
-        app:layout_constraintStart_toEndOf="@id/contact_photo"
+        android:textColor="@color/telegram_accend_dark"
+        app:layout_constraintStart_toEndOf="@id/toolbar_image"
         app:layout_constraintTop_toBottomOf="@id/contact_fullname" />
 
 

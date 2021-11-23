@@ -44,7 +44,7 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) :
                             .updateChildren(dataMap)  // заполняем удаленную базу
                             .addOnSuccessListener {
                                 showToast("Добро пожаловать!")
-                                //(activity as RegisterActivity).replaceActivity(MainActivity())
+
                             }
                             .addOnFailureListener { showToast(it.message.toString()) }
                     }
